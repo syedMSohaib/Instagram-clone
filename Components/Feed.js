@@ -2,6 +2,7 @@ import React from "react";
 import Stories from "./Stories";
 import Posts from "./Posts";
 import Miniprofile from "./Miniprofile";
+import Suggestion from "./Suggestion";
 
 export default function Feed() {
   return (
@@ -17,6 +18,7 @@ export default function Feed() {
       <section className="hidden xl:inline-grid md:col-span-1">
         <div className="fixed top-20">
           <Miniprofile />
+          <Suggestion />
         </div>
       </section>
     </div>
