@@ -11,9 +11,18 @@ import {
 } from "@heroicons/react/outline";
 // import { HomeIcon } from "@heroicons/react/solid";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { useRecoilState } from "recoil";
+import { modalState } from "../atoms/ModalAtom";
 
 export default function Header() {
   const session = useSession();
+
+  const [open, setOpen] = useRecoilState(modalState);
+
+  /* 
+    for readonly value
+    const open = useRecoilValue(modalState);
+  */
 
   // console.log("session", session);
 
@@ -61,7 +70,10 @@ export default function Header() {
                   3
                 </div>
               </div>
-              <PlusIcon className="navBtn rounded-md border border-gray-600" />
+              <PlusIcon
+                onClick={() => setOpen(true)}
+                className="navBtn rounded-md border border-gray-600"
+              />
               <UserGroupIcon className="navBtn" />
               <HeartIcon className="navBtn" />
               <img

@@ -6,12 +6,12 @@ import styles from "../styles/Home.module.css";
 import { useSession } from "next-auth/react";
 import Router from "next/router";
 import React, { useEffect } from "react";
+import AddPostModal from "../Components/AddPostModal";
 
 export default function Home() {
   const session = useSession();
 
   useEffect(() => {
-    // console.log("home", session);
     if (session.status == "unauthenticated") Router.push("/auth/signin");
   }, [session]);
 
@@ -30,6 +30,10 @@ export default function Home() {
         <Header />
 
         <Feed />
+
+        {/* Modal Component Started */}
+        <AddPostModal />
+        {/* Modal Component Ended */}
       </div>
     </>
   );
