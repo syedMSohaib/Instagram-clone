@@ -23,6 +23,10 @@ yarn dev
 - [TailwindCSS](https://tailwindcss.com/docs) - Tailwind CSS
 - [Firebase](https://firebase.com/) - Firebase
 
+## Screenshot
+
+![Demo](https://raw.githubusercontent.com/syedMSohaib/Instagram-clone/main/public/images/demo.png)
+
 ## Support
 
 Support by pressing up the star icon :)
