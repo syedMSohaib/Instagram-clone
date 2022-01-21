@@ -11,4 +11,12 @@ export default NextAuth({
     }),
     // ...add more providers here
   ],
+  pages: {
+    signIn: "/auth/signin",
+  },
+  //   theme: {
+  //     logo: "/images/logo.png",
+  //     brandColor: "#F13287",
+  //     colorScheme: "auto ",
+  //   },
 });
