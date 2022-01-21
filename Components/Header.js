@@ -10,8 +10,13 @@ import {
   HeartIcon,
 } from "@heroicons/react/outline";
 // import { HomeIcon } from "@heroicons/react/solid";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function Header() {
+  const session = useSession();
+
+  // console.log("session", session);
+
   return (
     <div className="shadow-sm border-b bg-white sticky top-0 z-50">
       <div className="flex justify-between max-w-6xl mx-5 xl:mx-auto">
@@ -43,24 +48,31 @@ export default function Header() {
         <div className="flex items-center justify-end space-x-4">
           <HomeIcon className="navBtn" />
           <MenuIcon className="w-8 md:hidden" />
-          <div className="relative navBtn">
-            <ChatIcon className="navBtn" />
-            <div
-              className={
-                "absolute -top-2 -right-1 text-xs w-5 h-5 bg-red-500 rounded-full flex items-center justify-center animate-pulse text-white"
-              }
-            >
-              3
-            </div>
-          </div>
-          <PlusIcon className="navBtn rounded-md border border-gray-600" />
-          <UserGroupIcon className="navBtn" />
-          <HeartIcon className="navBtn" />
 
-          <img
-            src={"/images/avatar.jpeg"}
-            className="rounded-full h-10 cursor-pointer"
-          />
+          {session.status !== "unauthenticated" ? (
+            <>
+              <div className="relative navBtn">
+                <ChatIcon className="navBtn" />
+                <div
+                  className={
+                    "absolute -top-2 -right-1 text-xs w-5 h-5 bg-red-500 rounded-full flex items-center justify-center animate-pulse text-white"
+                  }
+                >
+                  3
+                </div>
+              </div>
+              <PlusIcon className="navBtn rounded-md border border-gray-600" />
+              <UserGroupIcon className="navBtn" />
+              <HeartIcon className="navBtn" />
+              <img
+                src={session?.data?.user?.image}
+                onClick={signOut}
+                className="rounded-full h-10 cursor-pointer"
+              />
+            </>
+          ) : (
+            <button onClick={signIn}>Sign In</button>
+          )}
         </div>
       </div>
     </div>

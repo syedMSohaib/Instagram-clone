@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { getProviders, signIn as signIntoProvider } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import Router from "next/router";
 
 export default function SignIn({ providers }) {
+  const session = useSession();
+
+  useEffect(() => {
+    // if (session.status !== "unauthenticated") Router.push("/");
+  }, []);
+
   return (
     <div className="bg-gray-50 h-screen ">
       <div className="grid xl:grid-cols-2 pt-[150px] xl:max-w-4xl mx-auto justify-center">
@@ -45,7 +53,9 @@ export default function SignIn({ providers }) {
                       src={"/images/" + provider.name + ".png"}
                     ></img>
                     <p
-                      onClick={() => signIntoProvider(provider.id)}
+                      onClick={() =>
+                        signIntoProvider(provider.id, { callbackUrl: "/" })
+                      }
                       className="cursor-pointer font-bold text-red-300"
                     >
                       Login with {provider.name}
